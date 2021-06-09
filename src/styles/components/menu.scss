@@ -1,0 +1,49 @@
+$menu-prefix-cls: $css-prefix + 'menu';
+
+.#{$menu-prefix-cls} {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: $font-size-base;
+  color: $text-color;
+  position: relative;
+  &-item,
+  &-submenu-title {
+  	@include menu-container;
+    padding: 0 $padding-md;
+    border-radius: $border-radius-small;
+  	&-active, &:hover {
+  		background-color: $background-color-base;
+  		color: $primary-color;
+  	}
+  }
+  &-submenu {
+    .#{$menu-prefix-cls} {
+      margin-left: $padding-md;
+    }
+    &-title {
+      & > i {
+        float: right;
+        line-height: 30px;
+        transition: transform $transition-time ease-in-out;
+      }
+    }
+  }
+  &-item-group {
+    &-title {
+      @include menu-container;
+      padding: 0 $padding-sm;
+      color: $text-color-secondary;
+    }
+    & > ul {
+      padding: 0;
+      list-style: none;
+    }
+  }
+  &-opened > * > &-submenu-title-icon {
+    transform: rotate(180deg);
+  }
+}
+.transition {
+  transition: 2s height ease-in-out;
+}

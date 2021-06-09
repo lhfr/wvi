@@ -1,0 +1,53 @@
+@import "color.scss";
+
+// prefix
+$css-prefix: 'wvi-';
+
+// color
+$primary-color: $purple;
+$link-color: $blue;
+$link-hover-color: blue;
+$link-active-color: $blueLight;
+$link-disable-color: $grey;
+
+// base
+$font-size-small: 12px;
+$font-size-base: 14px;
+$font-size-large: 16px;
+$text-color: $black;
+$text-color-secondary: $grey;
+$font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+$line-height-base: 1.5;
+$body-background: #fff;
+$code-family: Consolas,Menlo,Courier,monospace;
+
+// border
+$border-color-base: $gray;
+$border-width-base: 1px;
+$border-style-base: solid; 
+$border-radius-small: 4px;
+$border-radius-base: 6px;
+
+// background
+$background-color-base: $ghostWhite;
+
+// padding
+$padding-xs: 5px; 
+$padding-sm: 10px; 
+$padding-md: 20px;
+$padding-lg: 25px; 
+
+// margin
+$margin-xs: 5px; 
+$margin-sm: 10px; 
+$margin-md: 20px;
+$margin-lg: 25px; 
+
+// animation
+$animation-time: .3s;
+$animation-time-quick: .15s;
+$transition-time: .2s;
+
+
+
+
