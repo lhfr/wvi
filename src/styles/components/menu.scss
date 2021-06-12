@@ -2,7 +2,7 @@ $menu-prefix-cls: $css-prefix + 'menu';
 
 .#{$menu-prefix-cls} {
   list-style: none;
-  padding: 0;
+  padding: 10px;
   margin: 0;
   font-size: $font-size-base;
   color: $text-color;
@@ -12,21 +12,18 @@ $menu-prefix-cls: $css-prefix + 'menu';
   	@include menu-container;
     padding: 0 $padding-md;
     border-radius: $border-radius-small;
-  	&-active, &:hover {
-  		background-color: $background-color-base;
-  		color: $primary-color;
-  	}
   }
   &-submenu {
-    .#{$menu-prefix-cls} {
-      margin-left: $padding-md;
-    }
     &-title {
       & > i {
         float: right;
         line-height: 30px;
         transition: transform $transition-time ease-in-out;
       }
+    }
+    .#{$menu-prefix-cls}-submenu-item {
+      list-style: none;
+      margin-left: $padding-md;
     }
   }
   &-item-group {
@@ -40,10 +37,43 @@ $menu-prefix-cls: $css-prefix + 'menu';
       list-style: none;
     }
   }
+  &-light {
+    .#{$menu-prefix-cls}-item,
+    .#{$menu-prefix-cls}-submenu-title {
+      &-active, &:hover {
+        background-color: $background-color-base;
+      }
+      &-active {
+        color: $primary-color;
+      }
+    }
+    &:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 100%;
+      background: $background-color-base;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      z-index: 1;
+    }
+  }
+  &-dark {
+    color: $menu-dark-color;
+    background: $menu-dark-bg;
+    .#{$menu-prefix-cls}-item,
+    .#{$menu-prefix-cls}-submenu-title {
+      &-active, &:hover {
+        background-color: $menu-dark-active-bg;
+      }
+      &-active {
+        color: lighten($primary-color, 20%);
+      }
+    }    
+  }
   &-opened > * > &-submenu-title-icon {
     transform: rotate(180deg);
   }
-}
-.transition {
-  transition: 2s height ease-in-out;
 }

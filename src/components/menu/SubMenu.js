@@ -40,7 +40,7 @@ const SubMenu = ({
 			</div>
 			<CollapseTransition show={isOpen}>
 				{/* 类似 v-show 收起时隐藏菜单 */}
-				<ul className={prefixCls} style={{display: !isOpen && 'none'}}>{ children }</ul>
+				<ul className={`${prefixCls}-submenu-item`} style={{display: !isOpen && 'none'}}>{ children }</ul>
 			</CollapseTransition>
 		</li>
 	)

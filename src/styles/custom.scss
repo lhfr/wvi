@@ -6,8 +6,8 @@ $css-prefix: 'wvi-';
 // color
 $primary-color: $purple;
 $link-color: $blue;
-$link-hover-color: blue;
-$link-active-color: $blueLight;
+$link-hover-color: darken($link-color, 10%);
+$link-active-color: lighten($link-color, 10%);
 $link-disable-color: $grey;
 
 // base
@@ -30,6 +30,9 @@ $border-radius-base: 6px;
 
 // background
 $background-color-base: $ghostWhite;
+$menu-dark-color: $gray;
+$menu-dark-bg: $black;
+$menu-dark-active-bg: $darkGray;
 
 // padding
 $padding-xs: 5px; 

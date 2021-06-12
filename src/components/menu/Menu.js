@@ -13,6 +13,7 @@ export const MenuContext = createContext()
 
 const Menu = (props) => {
 	const {
+		theme,
 		onSelect,
 		onOpen,
 		className,
@@ -22,6 +23,7 @@ const Menu = (props) => {
 	const [openedNames, setOpenedNames] = useState(props.openedNames)
 	const classes = classNames(
 		prefixCls,
+		`${prefixCls}-${theme || 'light'}`,
 		className
 	)
 	const handleSelect = (name) => {
