@@ -56,12 +56,6 @@ a {
         outline: 0;
         text-decoration: none;
     }
-
-    &[disabled] {
-        color: $link-disable-color;
-        cursor: not-allowed;
-        pointer-events: none;
-    }
 }
 
 code,
