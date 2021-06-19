@@ -1,7 +1,8 @@
 import {
 	useState,
 	useRef,
-	useEffect
+	useEffect,
+	useMemo
 } from 'react'
 import classNames from 'classnames'
 import {
@@ -20,7 +21,9 @@ const Tabs = (props) => {
 	const [tabList, setTabList] = useState([])
 	const [tabWidth, setTabWidth] = useState(0)
 	const [tabOffset, setTabOffset] = useState(0)
+	const [navOffset, setNavOffset] = useState(0)
 	const [scrollable, setScrollable] = useState(false)
+	const [navStyle, setNavStyle] = useState({})
 	const [selectedName, setSelectedName] = useState(props.selectedName)
 	const navRef = useRef(null)
 	const navScrollRef = useRef(null)
@@ -61,11 +64,11 @@ const Tabs = (props) => {
 		}
 	)
 	const tabInkStyle = {
-		width: tabWidth,
+		width: tabWidth - 10,
 	}
 	animated ? tabInkStyle.transform = `translateX(${tabOffset}px)` : tabInkStyle.left = `${tabOffset}px`
+	// 初始化 navList
 	useEffect(() => {
-		// 初始化 navList
 		const panes = findComponentsDownward(children, 'TabPane')
 		const tabList = panes.map(pane => {
 			const {
@@ -81,46 +84,92 @@ const Tabs = (props) => {
 		})
 		setTabList(tabList)
 	}, [children])
+	// 初始化 tab 长度
 	useEffect(() => {
-		// 初始化 tab 长度
 		setTimeout(() => {
 			const firstTab = navRef.current.querySelector(`.${prefixCls}-tab`)
-			setTabWidth(firstTab.offsetWidth)
+			setTabWidth(firstTab.offsetWidth + 10)
 		})
 	}, [])
+	// 更新 scrollable
 	useEffect(() => {
-		// 更新 tabOffset
+		setTimeout(() => {
+			const dom = navScrollRef.current
+			const resizeObserver = new ResizeObserver(() => {
+				const navScrollWidth = navScrollRef.current.offsetWidth
+				const navWidth = navRef.current.offsetWidth
+				setScrollable(navScrollWidth < navWidth)
+			})
+			resizeObserver.observe(dom)
+			return () => resizeObserver.unobserve(dom)
+		})
+	}, [])
+	// 更新 tabOffset
+	useEffect(() => {
 		let tabOffset = 0
 		const index = tabList.findIndex(v => v.name === selectedName)
-		tabOffset += index * (tabWidth + 10)
+		tabOffset += index * tabWidth
 		setTabOffset(tabOffset)
 	}, [selectedName, tabList, tabWidth])
+	let scrollOffset;
+	// 更新 navOffset
 	useEffect(() => {
-		// 更新 scrollable
-		const dom = navScrollRef.current
-		const resizeObserver = new ResizeObserver(() => {
-			const navWidth = navRef.current.offsetWidth
-			const navScrollWidth = navScrollRef.current.offsetWidth
-			setScrollable(navScrollWidth < navWidth)
+		setTimeout(() => {
+			if (!scrollable) return;
+			const navScroll = navScrollRef.current
+			const nav = navRef.current
+			const activeTab = navScroll.querySelector(`.${prefixCls}-tab-active`)
+			const navScrollBounding = navScroll.getBoundingClientRect()
+			const navBounding = nav.getBoundingClientRect()
+			const activeTabBounding = activeTab.getBoundingClientRect()
+			let navOffset = 0
+			if (activeTabBounding.right > navScrollBounding.right) {
+				navOffset = navScrollBounding.right - activeTabBounding.right + scrollOffset
+			} else if (activeTabBounding.left < navScrollBounding.left) {
+				navOffset = navBounding.left - activeTabBounding.left
+			} else {
+				navOffset = scrollOffset
+			}
+			setNavOffset(navOffset)
 		})
-		resizeObserver.observe(dom)
-		return () => resizeObserver.unobserve(dom)
-	}, [setScrollable])
-	const handleClick = (i) => {
+	}, [scrollable, selectedName, scrollOffset])
+	scrollOffset = useMemo(() => {
+		const navStyle = {}
+		navStyle.transform = `translateX(${navOffset}px)`
+		setNavStyle(navStyle)
+		return Number(navStyle.transform.slice(11, -3))
+	}, [navOffset])
+	const handleSelectTab = (i) => {
 		const tab = tabList[i]
 		if (tab.disabled) return
 		setSelectedName(tabList[i].name)
 	}
+	const handleScrollPrev = () => {
+		if (-scrollOffset <= tabWidth) {
+			setNavOffset(0)
+		} else {
+			setNavOffset((navOffset) => navOffset + tabWidth)
+		}
+	}
+	const handleScrollNext = () => {
+		const navScrollWidth = navScrollRef.current.offsetWidth
+		const navWidth = navRef.current.offsetWidth
+		if (navWidth - navScrollWidth <= -scrollOffset + tabWidth) {
+			setNavOffset(navScrollWidth - navWidth)
+		} else {
+			setNavOffset((navOffset) => navOffset - tabWidth)
+		}
+	}
 	return (
 		<div className={classes} style={style}>
 			<div className={navContainerClasses}>
-			    <span className={tabPreClasses}><Icon type={'chevron-left'} /></span>
-          		<span className={tabNextClasses}><Icon type={'chevron-right'} /></span>
-    		    <div className={`${prefixCls}-nav-scroll`} ref={navScrollRef}>
-          			<div className={`${prefixCls}-nav`} ref={navRef}>
+			    <span onClick={handleScrollPrev} className={tabPreClasses}><Icon type={'chevron-left'} /></span>
+          		<span onClick={handleScrollNext} className={tabNextClasses}><Icon type={'chevron-right'} /></span>
+    		    <div ref={navScrollRef} className={`${prefixCls}-nav-scroll`}> 
+          			<div ref={navRef} className={`${prefixCls}-nav`} style={navStyle}>
           				{
           					tabList.map((v, i) => (
-          						<div key={v.name} onClick={() => handleClick(i)} className={tabClasses(v)}>{v.title}</div>
+          						<div key={v.name} onClick={() => handleSelectTab(i)} className={tabClasses(v)}>{v.title}</div>
           					))
           				}
           				<div className={tabInkClasses} style={tabInkStyle} />

@@ -4,6 +4,7 @@ $menu-prefix-cls: $css-prefix + 'tabs';
 	&-nav {
 		position: relative;
 		float: left; // 使长度溢出
+		transition: transform .5s ease-in-out;
 		&-container {
 			position: relative;
 		}
