@@ -134,7 +134,8 @@ const Tabs = (props) => {
 		const navScrollBounding = navScroll.getBoundingClientRect()
 		const navBounding = nav.getBoundingClientRect()
 		const activeTabBounding = activeTab.getBoundingClientRect()
-		let offset = navOffset
+		const currentOffset = Number(nav.style.transform.slice(11, -3)) // 防止死循环
+		let offset = currentOffset
 		if (activeTabBounding.right > navScrollBounding.right) offset = navScrollBounding.right - activeTabBounding.right + offset
 		if (activeTabBounding.left < navScrollBounding.left) offset = navBounding.left - activeTabBounding.left
 		setNavOffset(offset)
