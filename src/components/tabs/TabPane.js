@@ -31,4 +31,6 @@ const TabPane = ({
 	)
 }
 
+TabPane.displayName = 'TabPane'
+
 export default TabPane
