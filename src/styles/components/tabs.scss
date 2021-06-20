@@ -3,20 +3,20 @@ $menu-prefix-cls: $css-prefix + 'tabs';
 .#{$menu-prefix-cls} {
 	&-nav {
 		position: relative;
-		float: left; // 使长度溢出
+		float: left; // 子元素被遮盖时使长度超出父元素
 		transition: transform .5s ease-in-out;
 		&-container {
 			position: relative;
 		}
 		&-scroll {
-			white-space: nowrap;
+			white-space: nowrap; // 使子元素显示在一行且长度超出父元素
 			color: $text-color;
 			margin-bottom: $margin-sm;
-            overflow: hidden;
-            &-abled {
-            	padding: 0 $padding-md;
-            }
-        }
+      overflow: hidden;
+      &-abled {
+        padding: 0 $padding-md;
+      }
+    }
 	}
 	&-tab {
 		display: inline-block;
@@ -24,39 +24,47 @@ $menu-prefix-cls: $css-prefix + 'tabs';
 		margin-right: $padding-sm;
 		&-active,
 		&:hover {
-            color: $primary-color;
-        }
-        &-disabled {
-           	pointer-events: none;
-          	cursor: default;
-           	color: $disable-color;
-        }
+      color: $primary-color;
+    }
+    &-disabled {
+      pointer-events: none;
+      cursor: default;
+      color: $disable-color;
+    }
 		&-ink {
-   		    height: 2px;
-            box-sizing: border-box;
-            background-color: $primary-color;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            z-index: 1;
-            transition: transform .3s ease-in-out;
-            transform-origin: 0 0;
+   		height: 2px;
+      box-sizing: border-box;
+      background-color: $primary-color;
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      transition: transform .3s ease-in-out;
+      transform-origin: 0 0;
 		}
 		&-prev {
-		    line-height: 32px;
-   			position: absolute;
-   			left: 0;
-   			&-disabled {
-   				display: none;
-   			}
-   		}
-   		&-next {
-   			line-height: 30px;
-   			position: absolute;
-   			right: 0;
-   		    &-disabled {
-   				display: none;
-   			}
+		  line-height: 32px;
+   		position: absolute;
+   		left: 0;
+   		&-disabled {
+   			display: none;
    		}
    	}
+    &-next {
+      line-height: 30px;
+      position: absolute;
+      right: 0;
+      &-disabled {
+        display: none;
+      }
+    }
+  }
+  &-content {
+    white-space: nowrap; 
+    transition: transform .3s ease-in-out;
+  }
+  &-tabpane {
+    display: inline-block;
+    width: 100%;
+  }
 }
