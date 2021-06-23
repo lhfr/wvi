@@ -4,7 +4,7 @@ $menu-prefix-cls: $css-prefix + 'tabs';
 	&-nav {
 		position: relative;
 		float: left; // 子元素被遮盖时使长度超出父元素
-		transition: transform .5s ease-in-out;
+		transition: transform $transition-time-slow ease-in-out;
 		&-container {
 			position: relative;
 		}
@@ -32,15 +32,16 @@ $menu-prefix-cls: $css-prefix + 'tabs';
       color: $disable-color;
     }
 		&-ink {
-   		height: 2px;
+   		height: $tabs-ink-boder-height;
       box-sizing: border-box;
       background-color: $primary-color;
       position: absolute;
       left: 0;
       bottom: 0;
       z-index: 1;
-      transition: transform .3s ease-in-out;
-      transform-origin: 0 0;
+      &-animated {
+        transition: transform $transition-time ease-in-out;
+      }
 		}
 		&-prev {
 		  line-height: 32px;
@@ -61,7 +62,9 @@ $menu-prefix-cls: $css-prefix + 'tabs';
   }
   &-content {
     white-space: nowrap; 
-    transition: transform .3s ease-in-out;
+      &-animated {
+        transition: transform $transition-time ease-in-out;
+      }
   }
   &-tabpane {
     display: inline-block;

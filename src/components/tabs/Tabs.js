@@ -23,6 +23,7 @@ const Tabs = (props) => {
 		className,
 		style,
 		animated = true,
+		onSelect
 	} = props;
 	const [tabList, setTabList] = useState([])
 	const [tabWidth, setTabWidth] = useState(0)
@@ -72,9 +73,9 @@ const Tabs = (props) => {
 	const tabInkStyle = useMemo(() => {
 		const style = {}
 		style.width = tabWidth - 10
-		animated ? style.transform = `translateX(${tabOffset}px)` : style.left = `${tabOffset}px`
+		style.transform = `translateX(${tabOffset}px)`
 		return style
-	}, [tabWidth, animated, tabOffset])
+	}, [tabWidth, tabOffset])
 	const navStyle = useMemo(() => {
 		const style = {}
 		style.transform = `translateX(${navOffset}px)`
@@ -141,10 +142,14 @@ const Tabs = (props) => {
 		setNavOffset(offset)
 	}, [selectedName, scrollable])
 	const handleSelectTab = useCallback((i) => {
-		const tab = tabList[i]
-		if (tab.disabled) return
-		setSelectedName(tabList[i].name)
-	}, [tabList])
+		const {
+			disabled,
+			name
+		} = tabList[i]
+		if (disabled) return
+		setSelectedName(name)
+		onSelect(name)
+	}, [tabList, onSelect])
 	const handleScrollPrev = useCallback(() => {
 		tabWidth <= -navOffset ? setNavOffset(offset => offset + tabWidth) : setNavOffset(0)
 	}, [tabWidth, navOffset])
