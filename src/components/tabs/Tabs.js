@@ -114,8 +114,8 @@ const Tabs = (props) => {
 	const updateScrollable = () => {
 		const navScroll = navScrollRef.current
 		const nav = navRef.current
-		const navScrollWidth = navScroll.offsetWidth || 0
-		const navWidth = nav.offsetWidth || 0
+		const navScrollWidth = (navScroll && navScroll.offsetWidth) || 0
+		const navWidth = (nav && nav.offsetWidth) || 0
 		setScrollable(navScrollWidth < navWidth)
 	}
 	useResizeObserver(navScrollRef, updateScrollable)

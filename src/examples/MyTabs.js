@@ -9,7 +9,7 @@ const MyTabs = () => {
 		console.log('name: ', name)
 	}
 	return (
-		<Tabs selectedName={1} onSelect={handleSelect}>
+		<Tabs selectedName={1} onSelect={handleSelect} style={{ width: 200 }}>
 			<TabPane title='标签一' name={1}>111</TabPane>
 			<TabPane title='标签二' name={2} disabled={true}>222</TabPane>
 			<TabPane title='标签三' name={3}>333</TabPane>
