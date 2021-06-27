@@ -1,4 +1,4 @@
-import Menu from '../components/menu/index'
+import Menu from '../components/menu'
 
 const {
 	SubMenu,

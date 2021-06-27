@@ -36,7 +36,7 @@ const SubMenu = ({
 	return (
 		<li className={classes} style={style}>
 			<div onClick={handleClick} className={`${prefixCls}-submenu-title`}>
-				{title}<Icon type={'chevron-down'} size={20} className={`${prefixCls}-submenu-title-icon`} />
+				{title}<Icon type={'chevron-down'} size={10} className={`${prefixCls}-submenu-title-icon`} />
 			</div>
 			<CollapseTransition show={isOpen}>
 				{/* 类似 v-show 收起时隐藏菜单 */}

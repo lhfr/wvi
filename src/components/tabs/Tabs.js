@@ -161,8 +161,8 @@ const Tabs = (props) => {
 	return (
 		<div className={classes} style={style}>
 			<div className={navContainerClasses}>
-			    <span onClick={handleScrollPrev} className={tabPreClasses}><Icon type={'chevron-left'} /></span>
-          		<span onClick={handleScrollNext} className={tabNextClasses}><Icon type={'chevron-right'} /></span>
+			    <span onClick={handleScrollPrev} className={tabPreClasses}><Icon type={'chevron-left'} size={10} /></span>
+          		<span onClick={handleScrollNext} className={tabNextClasses}><Icon type={'chevron-right'} size={10} /></span>
     		    <div ref={navScrollRef} className={`${prefixCls}-nav-scroll`}> 
           			<div ref={navRef} className={`${prefixCls}-nav`} style={navStyle}>
           				{

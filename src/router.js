@@ -6,6 +6,7 @@ import {
 import Icon from './examples/MyIcon'
 import Menu from './examples/MyMenu'
 import Tabs from './examples/MyTabs'
+import Cascsder from './examples/MyCascader'
 
 const containerStyle = {
 	listStyle: 'none',
@@ -19,10 +20,12 @@ const Router = () =>
 		   <li><Link to='icon'>icon</Link>|</li>
      	   <li><Link to='menu'>menu</Link>|</li>
      	   <li><Link to='tabs'>tabs</Link>|</li>
+     	   <li><Link to='cascader'>cascader</Link>|</li>
   		</ul>
   		<Route path='/icon' component={Icon} />
 		<Route path='/menu' component={Menu} />
 		<Route path='/tabs' component={Tabs} />
+		<Route path='/cascader' component={Cascsder} />
 	</HashRouter>
 
 export default Router

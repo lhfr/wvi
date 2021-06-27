@@ -1,3 +1,26 @@
+@mixin motionCommon {
+	animation-duration: $animation-time;
+	animation-timing-function: ease-in-out;
+}
+
+@mixin makeMotion($className, $keyframeName) {
+	.#{$className}-enter-active {
+		animation-name: $keyframeName + 'In';
+		@include motionCommon;
+	}
+	.#{$className}-exit-active {
+		display: block !important;
+		animation-name: $keyframeName + 'Out';
+		@include motionCommon;
+	}
+	.#{$className}-exit-done {
+		display: none !important;
+	}
+}
+
+@import 'slide';
+
 .collapse-transition {
     transition: $transition-time height ease-in-out;
 }
+

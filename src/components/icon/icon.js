@@ -16,7 +16,7 @@ const Icon = ({
 		className
 	)
 	const styles = {}
-	size && (styles.size = size)
+	size && (styles.fontSize = size)
 	color && (styles.color = color)
 	return (
 		<i className={classes} style={{...styles, ...style}} />

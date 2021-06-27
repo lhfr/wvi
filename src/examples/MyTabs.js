@@ -1,4 +1,4 @@
-import Tabs from '../components/tabs/index'
+import Tabs from '../components/tabs'
 
 const {
 	TabPane

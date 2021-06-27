@@ -2,13 +2,13 @@ import {
 	useEffect
 } from 'react'
 
-const useResizeOberver = (ref, fn) => {
+const useResizeOberver = (ref, callback) => {
 	useEffect(() => {
 		const el = ref.current
-		const resizeObserver = new ResizeObserver(fn)
+		const resizeObserver = new ResizeObserver(callback)
 		resizeObserver.observe(el)
 		return () => resizeObserver.unobserve(el)
-	}, [ref, fn])
+	}, [ref, callback])
 }
 
 export default useResizeOberver
