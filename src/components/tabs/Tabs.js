@@ -174,11 +174,13 @@ const Tabs = (props) => {
           			</div>
     			</div>
 			</div>
-			<TabsContext.Provider value={{selectedName}}>
-				<div className={contentClasses} style={contentStyle}>
-					{children}
-				</div>
-			</TabsContext.Provider>
+			<div className={`${prefixCls}-content-container`}>
+     			<div className={contentClasses} style={contentStyle}>
+     				<TabsContext.Provider value={{selectedName}} >
+     					{children}
+     				</TabsContext.Provider>
+     			</div>
+			</div>
 		</div>
 	)
 }

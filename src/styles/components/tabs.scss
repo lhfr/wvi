@@ -44,27 +44,22 @@ $menu-prefix-cls: $css-prefix + 'tabs';
       }
 		}
 		&-prev {
-		  line-height: 32px;
-   		position: absolute;
+      @include tabs-icon;
    		left: 0;
-   		&-disabled {
-   			display: none;
-   		}
    	}
     &-next {
-      line-height: 30px;
-      position: absolute;
+      @include tabs-icon;
       right: 0;
-      &-disabled {
-        display: none;
-      }
     }
   }
   &-content {
     white-space: nowrap; 
-      &-animated {
-        transition: transform $transition-time ease-in-out;
-      }
+    &-animated {
+      transition: transform $transition-time ease-in-out;
+    }
+    &-container {
+      overflow: hidden;
+    }
   }
   &-tabpane {
     display: inline-block;

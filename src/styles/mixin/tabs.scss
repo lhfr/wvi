@@ -1,0 +1,7 @@
+@mixin tabs-icon {
+	line-height: 32px;
+   	position: absolute;
+   	&-disabled {
+   		display: none;
+   	}
+}
