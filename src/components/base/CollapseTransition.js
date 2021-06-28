@@ -22,7 +22,7 @@ const CollapseTransition = ({
 	const handleExit = (el) => {
 		el.classList.add('collapse-transition')
 		// 解决收起时子组件不显示的 bug
-		el.style.display = ''
+		el.style.display = 'block'
 		el.style.height = el.scrollHeight + 'px'
 		el.style.overflow = 'hidden'
 	}
@@ -31,7 +31,6 @@ const CollapseTransition = ({
 	}
 	const handleExited = (el) => {
 		el.classList.remove('collapse-transition')
-		// 解决收起时子组件不显示的 bug
 		el.style.display = 'none'
 		el.style.height = ''
 		el.style.overflow = ''

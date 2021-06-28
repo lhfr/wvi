@@ -9,7 +9,8 @@ const Transition = ({
 	return (
 		<CSSTransition
 			in={show}
-			timeout={300}
+			// 解决动画关闭时闪烁的问题
+			timeout={250}
 			classNames={'transition-drop'}
 		>
 			{children}

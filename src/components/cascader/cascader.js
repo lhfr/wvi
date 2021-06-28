@@ -1,18 +1,15 @@
 import {
 	useState,
-	useRef,
-	useEffect
+	useRef
 } from 'react'
 import useClickOutside from '../../hooks/useClickOutside'
 import Icon from '../icon'
 import Transition from '../base/Transition'
+import Dropdown from '../base/Dropdown'
 
 const prefixCls = 'wvi-cascader'
 
-const Cascader = ({
-	value,
-	children
-}) => {
+const Cascader = (props) => {
 	const [isSelect, setIsSelect] = useState(false)
 	const casRef = useRef(null)
 	const clickOutside = () => {
@@ -25,10 +22,12 @@ const Cascader = ({
 	return (
 		<div ref={casRef} className={prefixCls}>
 			<div onClick={openSelect} className={`${prefixCls}-head`}>
-				{value}<Icon type={'chevron-down'} size={20} className={`${prefixCls}-head-icon`} size={10} />
+				test<Icon type={'chevron-down'} size={10} className={`${prefixCls}-head-icon`} />
 			</div>	
 			<Transition show={isSelect}>
-				<div style={{width: 100, height: 100, background: 'blue', display: isSelect ? '' : 'none'}}></div>
+				<Dropdown style={{display: isSelect ? 'block' : 'none'}}>
+					<div style={{width: 100, height: 100, background: 'blue'}}></div>
+				</Dropdown>
 			</Transition>
 		</div>
 	)

@@ -13,9 +13,6 @@
 		animation-name: $keyframeName + 'Out';
 		@include motionCommon;
 	}
-	.#{$className}-exit-done {
-		display: none !important;
-	}
 }
 
 @import 'slide';

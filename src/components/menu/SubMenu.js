@@ -1,6 +1,8 @@
 import {
 	useState,
-	useContext
+	useContext,
+	useCallback,
+	useMemo
 } from 'react'
 import classNames from 'classnames'
 import {
@@ -29,10 +31,15 @@ const SubMenu = ({
 		},
 		className
 	)
-	const handleClick = () => {
+	const subStyle = useMemo(() => {
+		const style = {}
+		style.display = isOpen ? 'block' : 'none'
+		return style
+	}, [isOpen])
+	const handleClick = useCallback(() => {
 		setIsOpen(isOpen => !isOpen)
 		handleOpen(name)
-	}
+	}, [name, handleOpen])
 	return (
 		<li className={classes} style={style}>
 			<div onClick={handleClick} className={`${prefixCls}-submenu-title`}>
@@ -40,7 +47,7 @@ const SubMenu = ({
 			</div>
 			<CollapseTransition show={isOpen}>
 				{/* 类似 v-show 收起时隐藏菜单 */}
-				<ul className={`${prefixCls}-submenu-item`} style={{display: !isOpen && 'none'}}>{ children }</ul>
+				<ul className={`${prefixCls}-submenu-item`} style={subStyle}>{ children }</ul>
 			</CollapseTransition>
 		</li>
 	)
