@@ -9,7 +9,8 @@
 		@include motionCommon;
 	}
 	.#{$className}-exit-active {
-		display: block !important;
+		// display: block !important;
+		visibility: visible !important;
 		animation-name: $keyframeName + 'Out';
 		@include motionCommon;
 	}

@@ -4,10 +4,10 @@ import {
 
 const useResizeOberver = (ref, callback) => {
 	useEffect(() => {
-		const el = ref.current
+		const element = ref.current
 		const resizeObserver = new ResizeObserver(callback)
-		resizeObserver.observe(el)
-		return () => resizeObserver.unobserve(el)
+		resizeObserver.observe(element)
+		return () => resizeObserver.unobserve(element)
 	}, [ref, callback])
 }
 

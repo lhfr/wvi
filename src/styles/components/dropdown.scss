@@ -1,0 +1,6 @@
+$menu-prefix-cls: $css-prefix + 'dropdown';
+
+.#{$menu-prefix-cls} {
+	position: absolute;
+	z-index: 999;
+}

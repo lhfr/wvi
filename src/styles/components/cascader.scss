@@ -1,11 +1,13 @@
 $menu-prefix-cls: $css-prefix + 'cascader';
 
 .#{$menu-prefix-cls} {
-	&-head {
+	position: relative;
+	&-nav {
+		width: 50px;
 		line-height: 30px;
 		&-icon {
 			margin-left: 8px;
-			vertical-align: 18%;
+			vertical-align: 15%;
 		}
 	}
 }
