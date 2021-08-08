@@ -15,13 +15,13 @@ $menu-prefix-cls: $css-prefix + 'menu';
   }
   &-submenu {
     &-title {
-      & > i {
+      &-icon {
         float: right;
         line-height: 30px;
         transition: transform $transition-time ease-in-out;
       }
     }
-    .#{$menu-prefix-cls}-submenu-item {
+    &-item {
       list-style: none;
       margin-left: $padding-md;
     }

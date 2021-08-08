@@ -35,6 +35,10 @@ $menu-dark-color: $gray;
 $menu-dark-bg: $black;
 $menu-dark-active-bg: $darkGray;
 
+// shadow
+$shadow-color: rgba(0, 0, 0, .2);
+$shadow-base: 0 1px 6px $shadow-color;
+
 // padding
 $padding-xs: 5px; 
 $padding-sm: 10px; 

@@ -2,19 +2,20 @@ import {
 	useState,
 	useRef
 } from 'react'
+import classNames from 'classnames'
 import useClickOutside from '../../hooks/useClickOutside'
 import Icon from '../icon'
 import Transition from '../base/Transition'
 import Dropdown from '../base/Dropdown'
-import classNames from 'classnames'
+import Caspanel from './caspanel'
 
 const prefixCls = 'wvi-cascader'
 
-const Cascader = (props) => {
-	const {
-		className,
-		style
-	} = props;
+const Cascader = ({
+	data,
+	className,
+	style
+}) => {
 	const [isSelect, setIsSelect] = useState(false)
 	const cascaderRef = useRef(null)
 	const navRef = useRef(null)
@@ -36,7 +37,7 @@ const Cascader = (props) => {
 			</div>	
 			<Transition show={isSelect}>
 				<Dropdown reference={navRef} style={{visibility: isSelect ? 'visible' : 'hidden'}}>
-					<div style={{width: 100, height: 100, border: '1px solid #000'}}></div>
+					<Caspanel data={data} />
 				</Dropdown>
 			</Transition>
 		</div>

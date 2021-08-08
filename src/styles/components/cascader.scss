@@ -4,10 +4,29 @@ $menu-prefix-cls: $css-prefix + 'cascader';
 	position: relative;
 	&-nav {
 		width: 50px;
-		line-height: 30px;
+		height: 30px;
+		display: flex;
+		align-items: center;
 		&-icon {
 			margin-left: 8px;
-			vertical-align: 15%;
+		}
+	}
+	&-menu {
+		display: flex;
+		& > ul {
+			min-width: 100px;
+			height: 180px;
+			list-style: none;
+			border-right: 1px solid #e8eaec;
+		}
+	}
+	&-item {
+		padding: 5px 10px;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		&-icon {
+			float: right;
 		}
 	}
 }

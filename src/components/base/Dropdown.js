@@ -10,7 +10,7 @@ const prefixCls = 'wvi-dropdown'
 const DropDown = ({
 	reference,
 	className,
-	placement: _placement = 'top-start',
+	placement: _placement = 'bottom-start',
 	style = {},
 	children
 }) => {

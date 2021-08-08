@@ -3,4 +3,6 @@ $menu-prefix-cls: $css-prefix + 'dropdown';
 .#{$menu-prefix-cls} {
 	position: absolute;
 	z-index: 999;
+	background: #fff;
+	box-shadow: $shadow-base;
 }
